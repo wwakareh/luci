@@ -51,6 +51,12 @@ bot.dialog('/goodbye', finalIntent);
 //=========================================================
 welcomeIntent.matches(/^Hello|Hi|Hey|Hola/i, [
     function (session, args, next) {
+      if(session.message && session.message.customData) {
+         console.log('Custom Data found: %s', JSON.stringify(session.message.customData)); 
+      } else {
+         console.log('No custom Data!'); 
+      }
+       
     	if(session.userData.name) {
     		next();
     	} else {
