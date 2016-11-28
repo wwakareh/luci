@@ -46,6 +46,17 @@ bot.dialog('/', welcomeIntent);
 bot.dialog('/presention', presentationIntent);
 bot.dialog('/goodbye', finalIntent);
 
+bot.on('conversationUpdate', function (message) {
+    if (message.membersAdded && message.membersAdded.length > 0) {
+    	var welcomeMessage = "Bienvenido al LuciBot.";
+    	
+    	var reply = new builder.Message()
+        .address(message.address)
+        .text(welcomeMessage);
+        bot.send(reply);
+    }
+});
+
 //=========================================================
 // Welcome
 //=========================================================
